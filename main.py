@@ -40,6 +40,10 @@ def analyze_package_json(file_path):
 
 import requests
 from bs4 import BeautifulSoup
+import os
+import sys
+from dotenv import load_dotenv
+from tavily import TavilyClient
 
 def scout_url(url):
     """
@@ -69,16 +73,47 @@ def scout_url(url):
         print(f"An unexpected error occurred: {e}")
 
 
+from dotenv import load_dotenv
+from tavily import TavilyClient
+
 def audit_geo(query, target_project):
     """
-    (Placeholder) Audits how a project appears in AI search engines for a given query.
+    Audits how a project appears in AI search engines for a given query using Tavily.
     """
-    print(f"--- GEO Audit ---")
+    print(f"--- Self-Serve GEO Audit ---")
     print(f"Query: '{query}'")
     print(f"Target Project: '{target_project}'")
-    print("\\n(Placeholder) Simulating queries to AI search engines...")
-    print("Result: Target project was NOT found in the top results.")
-    print("Recommendation: (Placeholder) Improve documentation with keywords related to the query.")
+    
+    load_dotenv()
+    api_key = os.getenv("TAVILY_API_KEY")
+    
+    if not api_key or api_key == "YOUR_API_KEY_HERE":
+        print("\\nERROR: TAVILY_API_KEY not found.")
+        print("Please create a .env file (copy from .env.example) and add your key.")
+        sys.exit(1)
+
+    try:
+        tavily = TavilyClient(api_key=api_key)
+        response = tavily.search(query=query, search_depth="advanced")
+        
+        print(f"\\nSearching {len(response['results'])} sources...")
+
+        found = False
+        for result in response['results']:
+            if target_project.lower() in result['content'].lower():
+                print(f"  - Found '{target_project}' in: {result['url']}")
+                found = True
+        
+        if not found:
+            print(f"  - Result: Target project '{target_project}' was NOT found in the top results.")
+            print("\\nRecommendation: Improve documentation with keywords related to the query.")
+        else:
+            print(f"\\nResult: Success! '{target_project}' was mentioned in the search results.")
+
+    except Exception as e:
+        print(f"An unexpected error occurred during the audit: {e}")
+        sys.exit(1)
+
 
 
 if __name__ == "__main__":
