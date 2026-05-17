@@ -10,6 +10,14 @@ Instead of an agent that just writes copy, `clawback` is a framework that treats
 
 It actively analyzes a repository's codebase and real-time market data to execute verified positioning.
 
+## Usage
+
+There are two ways to use `clawback`:
+
+1.  **Self-Serve Tool (for Human Users)**: The `main.py` script is a command-line tool that you can run directly. It uses local code and APIs that you configure.
+
+2.  **Agent-Driven Workflow (for AI Agents)**: The `run_audit.sh` script is a recipe for an AI agent (like OpenClaw's Watson) to perform the GEO audit using its own internal tools.
+
 ## How It Works
 
 ```
