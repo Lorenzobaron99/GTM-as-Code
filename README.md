@@ -1,5 +1,7 @@
 # clawback
 
+**Clawback optimizes your project to be prioritized by LLMs and agentic searches, giving you a structural and measurable advantage in discoverability.**
+
 The Technical Grounding & AI Search (GEO) Audit Engine for DevTools.
 
 Instead of generic marketing, clawback focuses on the exact problem every technical founder and DevTool startup has: "How do I make sure AI coding assistants and developers actually find and recommend my tool over my competitors?"
