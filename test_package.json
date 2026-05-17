@@ -1,0 +1,23 @@
+{
+  "name": "example-devtool",
+  "version": "1.0.0",
+  "description": "A sample devtool project for clawback analysis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'tests passed'"
+  },
+  "keywords": [
+    "devtool",
+    "example"
+  ],
+  "author": "Test User",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "commander": "^9.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "jest": "^27.5.1"
+  }
+}
