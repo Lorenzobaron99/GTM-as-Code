@@ -32,6 +32,27 @@ The system generates two specific, code-native files back into the workspace:
 1.  **`THE_TRUTH.md`**: A brutal, un-fluffed teardown of what the code *actually* does vs. what competitors' code does (zero marketing fluff allowed).
 2.  **`.agents/product-marketing.md`**: A machine-readable context file designed to be committed to the repo, ensuring other AI agents (Cursor, Claude Code, Copilot) explain the product accurately to end-users.
 
+## How to Direct an Agent
+
+To use the agent-driven workflow, you (the human) must instruct an agent (like Watson) what to do. Here is a guide.
+
+**1. Choose a good query**
+The query should be a real question a developer would ask an AI assistant.
+*   **Good:** `"best rust library for grpc"`
+*   **Good:** `"fastest local vector database for python"`
+*   **Bad:** `"my project vs competitor x"` (Too biased)
+*   **Bad:** `"why is my project the best"` (Not a real search query)
+
+**2. Choose a target project name**
+This should be the exact name of the project you want to find in the search results. It is case-sensitive.
+*   e.g., `tonic`, `hyper`, `duckdb`
+
+**3. Give the instruction to your agent**
+Your prompt to the agent should be clear.
+> "Hey Watson, please use the `GTM-as-Code` repository to run an audit. The query is **'best rust library for grpc'** and the target project is **'tonic'**."
+
+The agent will then follow the instructions in the `run_audit.sh` script and report the findings back to you.
+
 ## Technical Roadmap
 
 To make `clawback` more effective, the following enhancements are planned:
